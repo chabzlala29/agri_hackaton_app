@@ -5,6 +5,26 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-  %body
-    .landing-container
-      = yield
+  %body.landing-body
+    .overlay
+    .container.devise-container
+      .center
+        %span.icon-quill{style: "font-size: 70px"}
+        %span{style: "font-size: 70px; color: #085240"} rice
+        %span{style: "font-size: 70px; color: white"} overflow
+      %span.titleize
+        Share your knowledge. Be curious. Be a
+        %strong Riceponsible
+        individual.
+      .sign_in
+        %a{:href => "/users/auth/facebook"}
+          %button.btn.btn-large.btn-facebook{:name => "button", :type => "submit"} 
+            %span.icon-facebook{style: "position:absolute; left: 10px; top: 10px;"}
+            Connect with Facebook
+      %br/
+      %br/
+      %br/
+      %br/
+      %span.titleize.special Special thanks to
+      .center.agri_hack
+        =image_tag "agri_hack.jpg"

@@ -15,3 +15,8 @@ gem 'spring',        group: :development
 gem 'bootstrap-sass'
 gem 'haml-rails'
 gem 'devise'
+gem 'omniauth-facebook'
+gem 'htmlentities'
+gem "select2-rails"
+gem 'acts_as_votable', '~> 0.10.0'
+

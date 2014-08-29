@@ -1,0 +1,78 @@
+.dashboard-container{
+  .tags-options{
+  }
+
+// WALL SECTION
+  .wall-container{
+    .misc-wrapper{
+      min-height: 30px;
+    }
+    .top-questions-wrapper{
+      min-height: 30px;
+
+      .question-lists{
+        .item{
+          padding: 10px;
+
+          &:nth-child(even){
+            background-color: #ecf0f1;
+          }
+
+          .stats{
+            min-height: 30px;
+            text-align: center;
+            color: #95a5a6;
+            position: relative;
+            top: 28px;
+          }
+          
+          .body{
+            a{
+              color: black;
+            }
+            .action-links{
+              span{
+                background: #95a5a6;
+                padding: 5px;
+                color: white;
+              }
+            }
+            .author{
+              .profile-pic{
+                width: 30px;
+                height: 30px;
+                overflow:hidden;
+
+                img{
+                  width: 30px;
+                }
+              }
+
+            }
+          }
+        }
+      }
+    }
+
+  }
+}
+
+//modal
+#add_question{
+  position: absolute;
+  top: 20%;
+
+  .modal-content{
+    border-radius: 0em;
+  }
+}
+
+//question form
+
+//pills
+.nav-pills a{
+  font-size: 12px; 
+}
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus{
+  background-color: #95a5a6 !important;
+}

@@ -1,0 +1,54 @@
+.question-show-wrapper
+  %h1= @question.question
+  .row
+    .col-md-8
+      %span.author
+        = image_tag @question.user.image
+        = @question.user.name
+        %span.status
+          = pluralize(@question.votes_for.size, "vote")
+          .actions
+            =link_to question_voteup_path(@question.id), method: :put do
+              %span upvote
+            =link_to question_votedown_path(@question.id), method: :put do
+              %span downvote
+
+  %br
+  %br
+  .row
+    .col-md-12
+      %p= @question.description
+      %br
+      .tags-wrapper
+        - @question.q_tags.each do |tag|
+          %span.label.label-default= tag.name
+
+
+  %h3= pluralize(@question.answers.count, "answer")
+  .row.new_answer_form
+    .col-md-1
+      .profile-pic
+        =image_tag current_user.image
+    .col-md-11
+      =form_for @answer do |f|
+        .form-group
+          = f.hidden_field :question_id, value: @answer.question_id
+          = f.text_area :answer, class: "form-control", placeholder: "Enter your answer here."
+        .form-group
+          = f.submit "Post Answer", class: "btn btn-default"
+  .answers-list
+    -@answers.each do |ans|
+      .row.item
+        .col-md-1
+        .col-md-11
+          .author-pic
+            =image_tag ans.user.image rescue ""
+          .content
+            =ans.answer
+            .actions
+              %span{style: "color: #95a5a6"}
+                =pluralize ans.votes_for.size, "vote"
+                =link_to "/answers/#{ans.id}/voteup", method: :put do
+                  %span.icon-thumbs-up
+                =link_to "/answers/#{ans.id}/votedown", method: :put do
+                  %span.icon-thumbs-up2

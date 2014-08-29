@@ -1,0 +1,63 @@
+.dashboard-container
+  .row.tags-options
+    .col-md-2.col-md-offset-10
+      %span.tag-option.btn.btn-lg.btn-info#create_question_button{data: {"target" => "#add_question", "toggle" => "modal" }} Ask Question
+  .row.wall-container
+    .col-md-9.top-questions-wrapper
+      .row
+        .col-md-4
+          %span.large-font.bold Popular Questions
+        .col-md-8
+          %ul.nav.nav-pills
+            %li.active
+              =link_to "Top", dashboards_path
+            %li
+              =link_to "Newest", newest_dashboards_path
+            %li
+              =link_to "Unanswered", unanswered_dashboards_path
+      .question-lists
+        -@questions.each do |question|
+          .row.item
+            .col-md-2.stats
+              .row
+                .col-md-6
+                  %span.num= question.answer_count
+                  %br
+                  %span.detail answers
+                .col-md-6
+                  %span.num= question.votes_for.size
+                  %br
+                  %span.detail votes
+            .col-md-9.body
+              .row
+                .col-md-10
+                  =link_to question do
+                    %span.medium-font.bold= question.question
+                  %br
+                  .tags-wrapper
+                    - question.q_tags.each do |tag|
+                      %span.label.label-default= tag.name
+                  %br
+                  .action-links
+                    =link_to question_voteup_path(question.id), method: :put do
+                      %span.icon-thumbs-up
+                    =link_to question_votedown_path(question.id), method: :put do
+                      %span.icon-thumbs-up2
+              .row
+                .col-md-12
+                  %span.author.pull-right
+                    asked by
+                    %span.profile-pic
+                      = image_tag question.user.image
+                    = question.user.name
+    .col-md-3.misc-wrapper
+#add_question.modal{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+          %span.sr-only Close
+        %h4#myModalLabel.modal-title Ask Some Question
+      .modal-body
+        = render "shared/question_form"

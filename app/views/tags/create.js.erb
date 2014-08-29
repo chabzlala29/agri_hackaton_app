@@ -1,0 +1,6 @@
+alert("Tag saved!");
+console.log("<%= @helper.html_safe %>");
+$("#question_tags").html("<%= @helper.html_safe %>");
+$("#question_tags").select2({
+  width: 400
+})

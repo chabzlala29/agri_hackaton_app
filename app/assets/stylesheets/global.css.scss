@@ -38,14 +38,20 @@ body{
 }
 
 .navbar-default{
-  background: #bdc3c7 !important;
+  background: #2ecc71 !important;
 
   .navbar-brand{
     color: white !important;
     font-weight: bold;
   }
 }
+.navbar-default .navbar-nav > li > a{
+  color: white !important;
+}
 
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  color: black !important;
+}
 //landing
 
 .landing-body{
@@ -114,6 +120,19 @@ body{
         }
       }
     }
+}
+.multi-colored-wrapper{
+  width: 100%;
+  height:4px;
+  position:fixed;
+  z-index: 99999;
+  top: 0px;
+
+  div{
+    float:left;
+    width: 20%;
+    height: inherit;
+  }
 }
 .footer-wrapper{
   margin-top: 20px;

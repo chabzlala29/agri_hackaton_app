@@ -1,0 +1,26 @@
+.center
+  %span.icon-quill{style: "font-size: 70px"}
+  %span{style: "font-size: 70px; color: #085240"} rice
+  %span{style: "font-size: 70px; color: white"} overflow
+%span.titleize
+  Share your knowledge. Be curious. Be a
+  %strong Riceponsible
+  individual.
+  %br
+  Ask. Answer. All about Rice 
+  %strong Agriculture.
+.sign_in
+  %a{:href => "/users/auth/facebook"}
+    %button.btn.btn-large.btn-facebook{:name => "button", :type => "submit"} 
+      %span.icon-facebook{style: "position:absolute; left: 10px; top: 10px;"}
+      Connect with Facebook
+  %br
+  %br
+  %br
+  =link_to "/users/sign_up" do
+    %button.btn.btn-large.btn-facebook{:name => "button", :type => "submit"} 
+      Sign Up
+%br/
+%br/
+%br/
+%br/

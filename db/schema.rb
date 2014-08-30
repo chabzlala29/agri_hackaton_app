@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20140829191031) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
-    t.string   "answer"
+    t.text     "answer"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20140829191031) do
   create_table "questions", force: true do |t|
     t.integer  "user_id"
     t.string   "question"
-    t.string   "description"
+    t.text     "description"
     t.string   "tags",                    default: [],  array: true
     t.datetime "created_at"
     t.datetime "updated_at"

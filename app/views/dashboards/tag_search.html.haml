@@ -6,26 +6,27 @@
     .col-md-9.top-questions-wrapper
       .row
         .col-md-4
-          %span.large-font.bold Unanswered
+          %span.large-font.bold Popular Questions
         .col-md-8
           %ul.nav.nav-pills
-            %li
+            %li.active
               =link_to "Top", dashboards_path
             %li
               =link_to "Newest", newest_dashboards_path
-            %li.active
+            %li
               =link_to "Unanswered", unanswered_dashboards_path
       %br
       %br
       %br
       = render "shared/tags"
       .question-lists
+        %h3 Tag Search for '#{@query}': #{ @questions.size} found
         -@questions.each do |question|
           .row.item
             .col-md-2.stats
               .row
                 .col-md-6
-                  %span.num= question.answer_count
+                  %span.num= question.answers.count
                   %br
                   %span.detail answers
                 .col-md-6
@@ -59,6 +60,7 @@
                       = image_tag question.user.image
                     = question.user.name
     .col-md-3.misc-wrapper
+
 #add_question.modal{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog
     .modal-content

@@ -25,11 +25,25 @@ class DashboardsController < ApplicationController
     query = tag_ids.map do |tag|
       "'#{tag}' = ANY (tags)"
     end.join(" OR ")
-    @questions = Question.where("question LIKE ?", "%#{params[:query]}%")
+    puts "#"*100
+    puts query
+    puts "#"*100
+    questions = Question.where("question LIKE ?", "%#{params[:query]}%")
     Question.where(query).each do |q|
-      @questions << q
-    end
+      questions << q
+    end unless query.blank?
+    @questions = questions
     @query = params[:query]
+  end
+
+  def tag_search
+    tag_ids = Tag.where(name: params[:query]).collect(&:id)
+    query = ""
+    query = tag_ids.map do |tag|
+      "'#{tag}' = ANY (tags)"
+    end.join(" OR ")
+    @query = params[:query]
+    @questions = Question.where(query)
   end
 
   private

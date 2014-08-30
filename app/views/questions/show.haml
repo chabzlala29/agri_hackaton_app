@@ -23,7 +23,8 @@
       %br
       .tags-wrapper
         - @question.q_tags.each do |tag|
-          %span.label.label-default= tag.name
+          =link_to "/dashboards/tag_search?query=#{tag.name}" do
+            %span.label.label-default{style: "font-size: 15px"}= tag.name
 
 
   %h3= pluralize(@question.answers.count, "answer")
@@ -50,6 +51,8 @@
             .actions
               %span{style: "color: #95a5a6"}
                 =pluralize ans.votes_for.size, "vote"
+                =pluralize ans.get_likes.size, "like"
+                =pluralize ans.get_dislikes.size, "dislike"
                 =link_to "/answers/#{ans.id}/voteup", method: :put do
                   %span.icon-thumbs-up
                 =link_to "/answers/#{ans.id}/votedown", method: :put do

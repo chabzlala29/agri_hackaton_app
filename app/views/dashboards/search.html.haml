@@ -15,8 +15,12 @@
               =link_to "Newest", newest_dashboards_path
             %li
               =link_to "Unanswered", unanswered_dashboards_path
+      %br
+      %br
+      %br
+      = render "shared/tags"
       .question-lists
-        %h3 Search Results for '#{@query}': #{ @questions.count} found
+        %h3 Search Results for '#{@query}': #{ @questions.size} found
         -@questions.each do |question|
           .row.item
             .col-md-2.stats
@@ -37,13 +41,17 @@
                   %br
                   .tags-wrapper
                     - question.q_tags.each do |tag|
-                      %span.label.label-default= tag.name
+                      =link_to "/dashboards/tag_search?query=#{tag.name}" do
+                        %span.label.label-default= tag.name
                   %br
                   .action-links
                     =link_to question_voteup_path(question.id), method: :put do
                       %span.icon-thumbs-up
                     =link_to question_votedown_path(question.id), method: :put do
                       %span.icon-thumbs-up2
+                    %span.status
+                      =pluralize question.get_likes.size, "like"
+                      =pluralize question.get_dislikes.size, "dislike"
               .row
                 .col-md-12
                   %span.author.pull-right

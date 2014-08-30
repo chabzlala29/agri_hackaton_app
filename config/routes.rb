@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: "dashboards#index"
   resources :dashboards do
     get :search, on: :collection
+    get :tag_search, on: :collection
     get :newest, on: :collection
     get :unanswered, on: :collection
   end

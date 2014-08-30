@@ -4,7 +4,7 @@ class CreateQuestions < ActiveRecord::Migration
       t.integer :user_id
       t.string :question
       t.string :description
-      t.string :tags
+      t.string :tags, array: true, default: '{}'
 
       t.timestamps
     end

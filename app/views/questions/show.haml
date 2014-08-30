@@ -7,6 +7,8 @@
         = @question.user.name
         %span.status
           = pluralize(@question.votes_for.size, "vote")
+          = pluralize(@question.get_likes.size, "like")
+          = pluralize(@question.get_dislikes.size, "dislike")
           .actions
             =link_to question_voteup_path(@question.id), method: :put do
               %span upvote

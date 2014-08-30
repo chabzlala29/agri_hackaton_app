@@ -2,7 +2,7 @@ class Question < ActiveRecord::Base
   belongs_to :user
   has_many :answers
 
-  validates :question, presence: true
+  validates :question, presence: true, uniqueness: true
   validates :description, presence: true
   validates :tags, presence: true
 

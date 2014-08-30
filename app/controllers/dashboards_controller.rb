@@ -19,6 +19,7 @@ class DashboardsController < ApplicationController
   end
 
   def search
+    tag_ids = Tag.where("name LIKE ?", "%#{params[:query]}%").collect(&:id)
     @questions = Question.where("question LIKE ?", "%#{params[:query]}%")
     @query = params[:query]
   end

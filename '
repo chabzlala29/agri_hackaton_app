@@ -6,26 +6,33 @@
     .col-md-9.top-questions-wrapper
       .row
         .col-md-4
-          %span.large-font.bold New Questions
+          %span.large-font.bold Popular Questions
         .col-md-8
           %ul.nav.nav-pills
-            %li
-              =link_to "Top", dashboards_path
             %li.active
+              =link_to "Top", dashboards_path
+            %li
               =link_to "Newest", newest_dashboards_path
             %li
               =link_to "Unanswered", unanswered_dashboards_path
+      %br
+      %br
+      = render "shared/tags"
       .question-lists
         -@questions.each do |question|
           .row.item
             .col-md-2.stats
               .row
-                .col-md-6
+                .col-md-4
                   %span.num= question.answer_count
                   %br
                   %span.detail answers
-                .col-md-6
+                .col-md-4
                   %span.num= question.votes_for.size
+                  %br
+                  %span.detail votes
+                .col-md-4
+                  %span.num= question.get_likes.size
                   %br
                   %span.detail votes
             .col-md-9.body

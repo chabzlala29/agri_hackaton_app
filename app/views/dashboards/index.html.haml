@@ -15,6 +15,10 @@
               =link_to "Newest", newest_dashboards_path
             %li
               =link_to "Unanswered", unanswered_dashboards_path
+      %br
+      %br
+      %br
+      = render "shared/tags"
       .question-lists
         -@questions.each do |question|
           .row.item

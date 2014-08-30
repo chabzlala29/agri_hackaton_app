@@ -1,0 +1,4 @@
+.tags-wrapper
+  %span.label.label-default All Tags
+  - Tag.all.limit(15).each do |tag|
+    %span.label.label-default= tag.name

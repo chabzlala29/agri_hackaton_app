@@ -20,7 +20,15 @@ class DashboardsController < ApplicationController
 
   def search
     tag_ids = Tag.where("name LIKE ?", "%#{params[:query]}%").collect(&:id)
+    puts tag_ids.inspect
+    query = ""
+    query = tag_ids.map do |tag|
+      "'#{tag}' = ANY (tags)"
+    end.join(" OR ")
     @questions = Question.where("question LIKE ?", "%#{params[:query]}%")
+    Question.where(query).each do |q|
+      @questions << q
+    end
     @query = params[:query]
   end
 

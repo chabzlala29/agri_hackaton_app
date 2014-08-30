@@ -10,7 +10,7 @@ class QuestionsController < ApplicationController
   def create
     question = current_user.questions.new(question_params)
     tags = question_params[:tags].reject! {|t| t.empty? }
-    question.tags = tags.join(",")
+    question.tags = tags
     if question.save
       redirect_to question, notice: "Question Successfully Saved!"
     else

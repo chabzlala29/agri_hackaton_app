@@ -10,10 +10,10 @@ class Question < ActiveRecord::Base
 
   scope :top, -> { order(:cached_weighted_average) }
   scope :newest, -> { order(:created_at) }
-  scope :unanswered, -> { joins('LEFT JOIN answers ON answers.question_id = questions.id').select("questions.*, count(answers.id) AS cnt").group('questions.id').having('cnt = 0') }
+  scope :unanswered, -> { where('id NOT IN (SELECT DISTINCT(question_id) FROM answers)') }
 
   def q_tags
-    tags = self.tags.split(",")
+    tags = self.tags
     Tag.find(tags)
   end
 
